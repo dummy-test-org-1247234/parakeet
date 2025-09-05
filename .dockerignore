@@ -44,11 +44,9 @@ Thumbs.db
 
 # Documentation
 docs/
-README.md
 
 # Tests (not needed in production container)
 tests/
 
 # Development files
-*.md
 .editorconfig

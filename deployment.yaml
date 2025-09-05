@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: parakeet-deployment
+  namespace: parakeet
   labels:
     app: parakeet
 spec:
@@ -16,7 +17,8 @@ spec:
     spec:
       containers:
       - name: parakeet
-        image: parakeet:latest
+        image: dummy-test-org-1247234/parakeet:1.0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:
