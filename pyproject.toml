@@ -1,0 +1,27 @@
+[project]
+name = "parakeet"
+version = "0.1.0"
+description = "FastAPI application that responds 'I'm a Parakeet'"
+readme = "README.md"
+authors = [
+    { name = "copilot-swe-agent[bot]", email = "198982749+Copilot@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.104.1",
+    "uvicorn[standard]>=0.24.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4.3",
+    "httpx>=0.25.2",
+    "pytest-asyncio>=0.21.1",
+]
+
+[project.scripts]
+parakeet = "parakeet.main:app"
+
+[build-system]
+requires = ["uv_build>=0.8.15,<0.9.0"]
+build-backend = "uv_build"
