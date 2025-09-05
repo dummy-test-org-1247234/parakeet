@@ -5,12 +5,13 @@ This is a minimal "Hello World Example with few vulns" repository containing onl
 ## Repository Overview
 Parakeet is a minimal demonstration repository designed as a simple example project. The codebase consists of:
 - A single README.md file with basic project description
+- A .github directory containing GitHub configuration files
 - No build system, dependencies, or complex application code
 - No automated tests or CI/CD pipelines
 
 ## Working Effectively
 ### Repository Structure
-- **Root directory**: Contains only README.md
+- **Root directory**: Contains README.md and .github directory
 - **No build system**: There are no package.json, Makefile, or other build configuration files
 - **No dependencies**: No external libraries or frameworks to install
 - **No source code**: This is a documentation-only repository
@@ -20,7 +21,7 @@ Parakeet is a minimal demonstration repository designed as a simple example proj
   - `git clone <repository-url>`
   - `cd parakeet`
 - View repository contents:
-  - `ls -la` - shows only README.md and .git directory
+  - `ls -la` - shows README.md, .github directory, and .git directory
   - `cat README.md` - displays the basic project description
 - Standard git operations work normally:
   - `git status`
@@ -53,11 +54,12 @@ The following are outputs from frequently run commands in this repository:
 ### Repository root listing
 ```bash
 ls -la
-total 16
-drwxr-xr-x 3 runner docker 4096 Sep  5 20:53 .
-drwxr-xr-x 3 runner docker 4096 Sep  5 20:53 ..
-drwxr-xr-x 7 runner docker 4096 Sep  5 20:53 .git
--rw-r--r-- 1 runner docker   46 Sep  5 20:53 README.md
+total 20
+drwxr-xr-x 4 runner docker 4096 Sep  5 21:06 .
+drwxr-xr-x 3 runner docker 4096 Sep  5 21:05 ..
+drwxr-xr-x 7 runner docker 4096 Sep  5 21:06 .git
+drwxr-xr-x 2 runner docker 4096 Sep  5 21:06 .github
+-rw-r--r-- 1 runner docker   46 Sep  5 21:06 README.md
 ```
 
 ### README.md contents
