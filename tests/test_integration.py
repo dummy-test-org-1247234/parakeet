@@ -17,9 +17,18 @@ class TestParakeetIntegration:
     @pytest.fixture(scope="class")
     def server_process(self):
         """Start the FastAPI server for integration testing."""
+        # Try UV first, fall back to direct python if UV is not available
+        try:
+            # Check if UV is available
+            subprocess.run(["uv", "--version"], check=True, capture_output=True)
+            cmd = ["uv", "run", "python", "-m", "uvicorn", "src.parakeet.main:app", "--host", "127.0.0.1", "--port", "8001"]
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            # Fall back to direct python execution
+            cmd = ["python", "-m", "uvicorn", "src.parakeet.main:app", "--host", "127.0.0.1", "--port", "8001"]
+        
         # Start the server in a subprocess
         process = subprocess.Popen(
-            ["uv", "run", "python", "-m", "uvicorn", "src.parakeet.main:app", "--host", "127.0.0.1", "--port", "8001"],
+            cmd,
             cwd="/home/runner/work/parakeet/parakeet",
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
