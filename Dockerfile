@@ -6,10 +6,10 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
 # Note: In production environment, you would install pip via package manager:
-# RUN dnf update -y && dnf install -y python3-pip && dnf clean all
+RUN dnf update -y && dnf install -y python3-pip shadow-utils  && dnf clean all
 
 # For environments with network restrictions, use ensurepip:
-RUN python3 -m ensurepip --upgrade
+# RUN python3 -m ensurepip --upgrade
 
 # Install uv for dependency management
 RUN python3 -m pip install uv
@@ -17,21 +17,23 @@ RUN python3 -m pip install uv
 # Set work directory
 WORKDIR /app
 
-# Copy project files
-COPY pyproject.toml ./
-COPY src/ ./src/
-
-# Install dependencies and create virtual environment
-RUN uv sync --frozen
-
 # Create a non-root user for security
-RUN adduser --system --no-create-home appuser
+RUN adduser -m appuser
 
 # Change ownership of the app directory
 RUN chown -R appuser:appuser /app
 
 # Switch to non-root user
 USER appuser
+
+# Copy project files
+COPY pyproject.toml ./
+COPY src/ ./src/
+COPY uv.lock ./
+COPY README.md ./
+
+# Install dependencies and create virtual environment
+RUN uv sync --frozen
 
 # Expose port 8000
 EXPOSE 8000
